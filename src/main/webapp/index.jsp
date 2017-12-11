@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.iesemilidarder.restaurants.web.ReadDB" %>
+<%@ page import="com.iesemilidarder.restaurants.web.Restaurants" %>
 <!doctype html>
 <html lang="ca">
 <head>
@@ -15,7 +20,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-
 <!-- Navigation bar -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="#">Restaurants</a>
@@ -54,6 +58,21 @@
     </div>
 
     <div class="container">
+        <%
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@35.205.41.45:1521:XE", "usuari","usuari");
+            Statement pstmt = con.prepareStatement("SELECT E.RES_NOM, E.RES_WEB, E.RES_ADRECA, E.RES_TELEFON, R.TRS_DESCRIPCIO FROM RESTAURANTS E , TRESTAURANTS R WHERE E.RES_TRS_CODI = R.TRS_CODI");
+
+            ReadDB readDB = new ReadDB();
+            ArrayList al = readDB.readRestaurants();
+            Iterator itr = al.iterator();
+            while (itr.hasNext()) {
+                Restaurants rst = (Restaurants) itr.next();
+                out.println(" " + rst.getName() + " " + rst.getAddress() + " " + rst.getWebsite() + " " + rst.getTelephone() + " " + rst.getType());
+
+
+            }
+        %>
         <!-- Example row of columns -->
         <div class="row">
             <div class="col-md-4">
