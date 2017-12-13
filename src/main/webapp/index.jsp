@@ -59,60 +59,69 @@
 
     <div class="container">
         <%
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@35.205.41.45:1521:XE", "usuari","usuari");
-            Statement pstmt = con.prepareStatement("SELECT E.RES_NOM, E.RES_WEB, E.RES_ADRECA, E.RES_TELEFON, R.TRS_DESCRIPCIO FROM RESTAURANTS E , TRESTAURANTS R WHERE E.RES_TRS_CODI = R.TRS_CODI");
+
 
             ReadDB readDB = new ReadDB();
             ArrayList al = readDB.readRestaurants();
             Iterator itr = al.iterator();
             while (itr.hasNext()) {
                 Restaurants rst = (Restaurants) itr.next();
-                out.println(" " + rst.getName() + " " + rst.getAddress() + " " + rst.getWebsite() + " " + rst.getTelephone() + " " + rst.getType());
+                out.println("<div class='row'>");
+                out.println("<div class= 'col-md-4'> " +
+                        "<img class= 'img-fluid' src='img/empty.png'> " +
+                        "</div>");
+                out.println("<div class= col-md-8>");
+
+
+
+                out.println("<h2>" + rst.getName()+ "</h2> <br> <p> <strong>" + rst.getAddress() + "</p> </strong> <br> <p> <strong>" + rst.getWebsite() + "</p> </strong> <br> <p> <strong>" + rst.getTelephone() + "</p> </strong>");
+
+                out.println("</div>  </div>");
 
 
             }
         %>
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4">
-                <img class="img-fluid" src="img/empty.png">
-            </div>
-            <div class="col-md-8">
-                <h2>Restaurant 1</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <img class="img-fluid" src="img/empty.png">
-            </div>
-            <div class="col-md-8">
-                <h2>Restaurant 2</h2>
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <img class="img-fluid" src="img/empty.png">
-            </div>
-            <div class="col-md-8">
-                <h2>Restaurant 3</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
-            </div>
-        </div>
+    <!-- Example row of columns -->
+        <!-- <div class="row">
+             <div class="col-md-4">
+                 <img class="img-fluid" src="img/empty.png">
+             </div>
+             <div class="col-md-8">
 
-        <hr>
+                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                 <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-4">
+                 <img class="img-fluid" src="img/empty.png">
+             </div>
+             <div class="col-md-8">
+                 <h2>Restaurant 2</h2>
+                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                 <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-md-4">
+                 <img class="img-fluid" src="img/empty.png">
+             </div>
+             <div class="col-md-8">
+                 <h2>Restaurant 3</h2>
+                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                 <p><a class="btn btn-secondary" href="test" role="button">Més informació &raquo;</a></p>
+             </div>
+         </div>
 
+         <hr>
+         -->
+<hr>
     </div> <!-- /container -->
 
 </main>
 
 <footer class="container">
-    <p>&copy; Nom de l'alumne 2017</p>
+    <p>&copy; Lluis Santano Santiago</p>
 </footer>
 
 <!-- Optional JavaScript -->
