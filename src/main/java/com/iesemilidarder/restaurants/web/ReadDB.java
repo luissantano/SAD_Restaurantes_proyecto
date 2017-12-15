@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ReadDB {
 
 
-    public ArrayList readRestaurants() {
+    public ArrayList readRestaurants(String cercar) {
 
         ArrayList ar = new ArrayList();
 
@@ -25,9 +25,21 @@ public class ReadDB {
 
             Statement stmt = con.createStatement();
 
+            ResultSet rs;
 
-/*Feim una consulta , que ens mostri el nom, la web , la adreça , el telefon etc*/
-            ResultSet rs = stmt.executeQuery("SELECT E.RES_NOM, E.RES_WEB, E.RES_ADRECA, E.RES_TELEFON, R.TRS_DESCRIPCIO FROM RESTAURANTS E , TRESTAURANTS R WHERE E.RES_TRS_CODI = R.TRS_CODI");
+
+            if (cercar == null || cercar.equals("")){
+
+                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+
+
+            } else {
+
+                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND RE.RES_NOM LIKE '%"+cercar+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+
+            }
+
+
 
             while (rs.next()) {
 

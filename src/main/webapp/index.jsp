@@ -40,7 +40,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Cercar" aria-label="Cercar">
+            <input class="form-control mr-sm-2" type="text" placeholder="Cercar" aria-label="Cercar" name="cercar">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cercar</button>
         </form>
     </div>
@@ -60,9 +60,10 @@
     <div class="container">
         <%
 
+            System.out.println(request.getParameter("cercar"));
 
             ReadDB readDB = new ReadDB();
-            ArrayList al = readDB.readRestaurants();
+            ArrayList al = readDB.readRestaurants("cercar pitos");
             Iterator itr = al.iterator();
             while (itr.hasNext()) {
                 Restaurants rst = (Restaurants) itr.next();
