@@ -27,15 +27,18 @@ public class ReadDB {
 
             ResultSet rs;
 
+            System.out.println(cercar);
 
             if (cercar == null || cercar.equals("")){
 
+                System.out.println("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
                 rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
 
 
             } else {
 
-                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND RE.RES_NOM LIKE '%"+cercar+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+                System.out.println("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND LOWER( RE.RES_NOM) LIKE '%"+cercar.toLowerCase()+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND LOWER( RE.RES_NOM) LIKE '%"+cercar.toLowerCase()+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
 
             }
 
