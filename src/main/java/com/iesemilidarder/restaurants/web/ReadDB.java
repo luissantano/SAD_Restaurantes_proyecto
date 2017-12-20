@@ -29,16 +29,16 @@ public class ReadDB {
 
             System.out.println(cercar);
 
+            //Aquest if serveix per al cercador . Diu que si el valor que introduim es null o no posam res , farà un select amb el nom , telèfon , imatge etc...
+
             if (cercar == null || cercar.equals("")){
 
-                System.out.println("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
-                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA , RES_URL_IMG FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
 
-
+            //Aquesta part del else fa un select amb el valor que l'hi hem introduit
             } else {
 
-                System.out.println("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND LOWER( RE.RES_NOM) LIKE '%"+cercar.toLowerCase()+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
-                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO , RE.RES_MITJANA FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND LOWER( RE.RES_NOM) LIKE '%"+cercar.toLowerCase()+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
+                rs = stmt.executeQuery("select * from  ( select RE.RES_NOM, RE.RES_WEB, RE.RES_ADRECA, RE.RES_TELEFON, RR.TRS_DESCRIPCIO, RE.RES_MITJANA, RES_URL_IMG FROM RESTAURANTS RE , TRESTAURANTS RR WHERE RE.RES_TRS_CODI = RR.TRS_CODI AND LOWER( RE.RES_NOM) LIKE '%"+cercar.toLowerCase()+"%' ORDER BY RE.RES_MITJANA desc ) where ROWNUM <= 5");
 
             }
 
@@ -52,6 +52,7 @@ public class ReadDB {
                 String address = rs.getString("RES_ADRECA");
                 String telephone = rs.getString("RES_TELEFON");
                 String type = rs.getString("TRS_DESCRIPCIO");
+                String image = rs.getString("RES_URL_IMG");
 
                 Restaurants rst = new Restaurants();
                 rst.setName(name);
@@ -59,6 +60,7 @@ public class ReadDB {
                 rst.setWebsite(website);
                 rst.setTelephone(telephone);
                 rst.setType(type);
+                rst.setImage(image);
 
 
 

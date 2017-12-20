@@ -1,11 +1,23 @@
 package com.iesemilidarder.restaurants.web;
 
+//He afegit un private string anomenat imatge per poder mostrar una imatge.
+
 public class Restaurants {
     private String name;
     private String address;
     private String website;
     private String telephone;
     private String type;
+    private String image;
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;
