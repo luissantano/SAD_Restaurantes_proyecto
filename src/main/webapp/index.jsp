@@ -51,7 +51,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container">
-            <h1 class="display-3">Restaurants</h1>
+            <h1 class="display-3">Ravioli , Ravioli what's in the pocketoli</h1>
             <p>Aixó es una pàgina per l'assignatura d'en Miquel de Java.</p>
             <p><a class="btn btn-primary btn-lg" href="test" role="button">Learn more &raquo;</a></p>
         </div>
